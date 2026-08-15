@@ -1,2 +1,3 @@
-# Security-Header-Scanner
-A Python CLI tool that scans HTTP security headers of a given URL and evaluates them against OWASP best practices, flagging missing or misconfigured headers such as CSP, HSTS, and X-Frame-Options.
+## HASH CRACKER
+
+Multi-threaded hash cracking tool with dictionary, brute-force, and rule-based mutation attacks.
