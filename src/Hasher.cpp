@@ -1,4 +1,4 @@
-#include "Hasher.hpp"
+#include "./Hasher.hpp"
 #include <iomanip>
 #include <sstream>
 #include <map>
@@ -56,8 +56,4 @@ std::string detectHashType(const std::string& hash){
   }
 
   return it->second;
-}
-
-std::string dictionaryAttack(const std::string& hash, const std::string& algorithm, const std::string path){
-  
 }

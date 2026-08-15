@@ -153,6 +153,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/DictionaryAttack.o: src/DictionaryAttack.cpp.o
+.PHONY : src/DictionaryAttack.o
+
+# target to build an object file
+src/DictionaryAttack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o
+.PHONY : src/DictionaryAttack.cpp.o
+
+src/DictionaryAttack.i: src/DictionaryAttack.cpp.i
+.PHONY : src/DictionaryAttack.i
+
+# target to preprocess a source file
+src/DictionaryAttack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.i
+.PHONY : src/DictionaryAttack.cpp.i
+
+src/DictionaryAttack.s: src/DictionaryAttack.cpp.s
+.PHONY : src/DictionaryAttack.s
+
+# target to generate assembly for a file
+src/DictionaryAttack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.s
+.PHONY : src/DictionaryAttack.cpp.s
+
 src/Hasher.o: src/Hasher.cpp.o
 .PHONY : src/Hasher.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/DictionaryAttack.o"
+	@echo "... src/DictionaryAttack.i"
+	@echo "... src/DictionaryAttack.s"
 	@echo "... src/Hasher.o"
 	@echo "... src/Hasher.i"
 	@echo "... src/Hasher.s"

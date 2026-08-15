@@ -1,18 +1,19 @@
 #include <iostream>
-#include "Hasher.hpp"
+#include "./src/DictionaryAttack.hpp"
+#include "./src/Hasher.hpp"
 
 int main(){
-  // std::string input = "password";
+  std::string hash;
+  std::string algorithm;
+  std::string path;
 
-  // std::cout << "MD5 of 'password': " << md5(input) << "\n";
-  // std::cout << "SHA1 of 'password': " << sha1(input) << "\n";
-  // std::cout << "SHA256 of 'password': " << sha256(input) << "\n";
-  // std::cout << "SHA512 of 'password': " << sha512(input) << "\n";
+  std::cout << "Hash to break: ";
+  std:: cin >> hash;
+  algorithm = detectHashType(hash);
 
-  std::string hash; 
-  std::cin >> hash;
+  std::cout << "Path to wordslist: ";
+  std::cin >> path;
 
-  std::cout << detectHashType(hash);
-
+  std::cout << dictionaryAttack(hash, algorithm, path);
   return 0;
 }

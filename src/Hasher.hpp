@@ -10,5 +10,3 @@ std::string sha256(const std::string& input);
 std::string sha512(const std::string& input);
 
 std::string detectHashType(const std::string& hash);
-
-std::string dictionaryAttack(const std::string& hash, const std::string& algorithm, const std::string path);
