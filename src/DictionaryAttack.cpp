@@ -1,5 +1,5 @@
-#include "./DictionaryAttack.hpp"
-#include "./Hasher.hpp"
+#include "../include/DictionaryAttack.hpp"
+#include "../include/Hasher.hpp"
 #include <string>
 #include <iostream>
 #include <fstream>

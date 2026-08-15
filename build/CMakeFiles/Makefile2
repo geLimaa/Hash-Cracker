@@ -85,12 +85,12 @@ clean: CMakeFiles/hashcracker.dir/clean
 CMakeFiles/hashcracker.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=1,2,3,4 "Built target hashcracker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target hashcracker"
 .PHONY : CMakeFiles/hashcracker.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/hashcracker.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/hashcracker.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles 0
 .PHONY : CMakeFiles/hashcracker.dir/rule
@@ -102,7 +102,7 @@ hashcracker: CMakeFiles/hashcracker.dir/rule
 # codegen rule for target.
 CMakeFiles/hashcracker.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target hashcracker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=1,2,3,4,5 "Finished codegen for target hashcracker"
 .PHONY : CMakeFiles/hashcracker.dir/codegen
 
 # clean rule for target.

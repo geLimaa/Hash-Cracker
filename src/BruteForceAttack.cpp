@@ -1,6 +1,7 @@
-#include "./BruteForceAttack.cpp"
-#include "Hasher.cpp"
+#include "../include/BruteForceAttack.hpp"
+#include "../include/Hasher.hpp"
 #include <iostream>
+#include <string>
 
 static std::string bruteForce(
   const std::string& prefix, 
@@ -9,7 +10,23 @@ static std::string bruteForce(
   const std::string& hash, 
   std::string (*hashFunction)(const std::string&)
 ){
+  if(remaining == 0){    
+    if(hashFunction(prefix) == hash){
+      return prefix;
+    }
+    else{
+      return "";
+    }
+  }
 
+  for(const auto c : charset){
+    std::string result = bruteForce(prefix+c, remaining-1, charset, hash, hashFunction);
+    if(result != ""){
+      return result;
+    }
+  }
+
+  return "";
 }
 
 std::string bruteForceAttack(
@@ -37,5 +54,12 @@ std::string bruteForceAttack(
     return "";
   }
 
-  return bruteForce("", maxLength, charset, hash, hashFunction);
+  for(int i = 1; i <= maxLength; i++){
+    std::string result = bruteForce("", i, charset, hash, hashFunction);
+    if(result != ""){
+      return result;
+    }
+  }
+
+  return "";
 }

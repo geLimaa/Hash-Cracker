@@ -1,8 +1,9 @@
-#include "./Hasher.hpp"
+#include "../include/Hasher.hpp"
 #include <iomanip>
 #include <sstream>
 #include <map>
 #include <cctype>
+#include <string>
 
 static std::string computeHash(const std::string& input, const EVP_MD* algorithm){
   EVP_MD_CTX* ctx = EVP_MD_CTX_new();
