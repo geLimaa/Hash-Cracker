@@ -15,6 +15,10 @@ int main(){
   std:: cin >> hash;
   algorithm = detectHashType(hash);
 
+  int numThreads;
+  std::cout << "Number of threads (1 = sequential): ";
+  std::cin >> numThreads;
+
   std::cout << "Which type of attack [Dictionary/BruteForce/RuleAttack]: ";
   std::cin >> typeAttack;
 
@@ -24,7 +28,13 @@ int main(){
     std::string path;
     std::cout << "Path to wordslist: ";
     std::cin >> path;
-    std::cout << dictionaryAttack(hash, algorithm, path);
+
+    if(numThreads > 1){
+      std::cout << dictionaryAttackThreaded(hash, algorithm, path, numThreads);
+    }
+    else{
+      std::cout << dictionaryAttack(hash, algorithm, path);
+    }
   }
   else if(typeAttack == "bruteforce"){
     std::cout << "Choose a charset:\n";
@@ -58,13 +68,24 @@ int main(){
     std::cout << "Max length: ";
     std::cin >> maxLength;
 
-    std::cout << bruteForceAttack(hash, algorithm, charset, maxLength);
+    if(numThreads > 1){
+      std::cout << bruteForceAttackThreaded(hash, algorithm, charset, maxLength, numThreads);
+    }
+    else{
+      std::cout << bruteForceAttack(hash, algorithm, charset, maxLength);
+    }  
   }
   else if(typeAttack == "ruleattack"){
     std::string path;
     std::cout << "Path to wordslist: ";
     std::cin >> path;
-    std::cout << ruleAttack(hash, algorithm, path);
+
+    if(numThreads > 1){
+      std::cout << ruleAttackThreaded(hash, algorithm, path, numThreads);
+    }
+    else{
+      std::cout << ruleAttack(hash, algorithm, path);
+    }  
   }
   else{
     std::cout << "Invalid Option\n";

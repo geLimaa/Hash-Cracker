@@ -7,6 +7,10 @@
 #include <map>
 #include <cctype>
 #include <algorithm>
+#include <thread>
+#include <mutex>
+
+std::mutex ruleResultMutex;
 
 static std::string capitalizeFirst(const std::string& word){
   if(word == ""){
@@ -176,4 +180,100 @@ std::string ruleAttack(
   }
 
   return answer;
+}
+
+static void ruleAttackWorker(
+  const std::vector<std::string>& words,
+  int start,
+  int end,
+  const std::string& hash,
+  std::string (*hashFunction)(const std::string&),
+  std::string& sharedResult,
+  bool& found
+){
+  for(int i = start; i < end; i++){
+    if(found){ return; }
+
+    if(hashFunction(words[i]) == hash){
+      std::lock_guard<std::mutex> lock(ruleResultMutex);
+      sharedResult = words[i];
+      found = true;
+      return;
+    }
+
+    std::vector<std::string> mutations = mutationsManager(words[i]);
+    for(const auto& w : mutations){
+      if(found){ return; }
+
+      if(hashFunction(w) == hash){
+        std::lock_guard<std::mutex> lock(ruleResultMutex);
+        sharedResult = w;
+        found = true;
+        return;
+      }
+    }
+  }
+}
+
+std::string ruleAttackThreaded(
+  const std::string& hash, 
+  const std::string& algorithm, 
+  const std::string& path,
+  int numThreads
+){
+  std::string(*hashFunction)(const std::string&);
+
+  if(algorithm == "md5"){
+    hashFunction = md5;
+  }
+  else if(algorithm == "sha1"){
+    hashFunction = sha1;
+  }
+  else if(algorithm == "sha256"){
+    hashFunction = sha256;
+  }
+  else if(algorithm == "sha512"){
+    hashFunction = sha512;
+  }
+  else{
+    std::cerr << "Invalid Algorithm Option";
+    return "";
+  }
+
+  std::ifstream file(path);
+  if(!file.is_open()){
+    std::cerr << "Error opening the file\n";
+    return "";
+  }
+
+  std::vector<std::string> words;
+  std::string line;
+  while(getline(file, line)){
+    words.push_back(line);
+  }
+
+  std::string sharedResult = "";
+  bool found = false;
+
+  int totalWords = words.size();
+  int chunkSize = totalWords / numThreads;
+
+  std::vector<std::thread> threads;
+
+  for(int t = 0; t < numThreads; t++){
+    int start = t * chunkSize;
+    int end = (t == numThreads - 1) ? totalWords : start + chunkSize;
+
+    threads.push_back(std::thread(
+      ruleAttackWorker,
+      std::cref(words), start, end, std::cref(hash), hashFunction,
+      std::ref(sharedResult), std::ref(found)
+    ));
+  }
+
+  for(auto& t : threads){
+    t.join();
+  }
+
+  return sharedResult;
 }

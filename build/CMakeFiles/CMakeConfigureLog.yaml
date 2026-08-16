@@ -1852,3 +1852,42 @@ events:
       CMAKE_SYSTEM_LIBRARY_PATH:
         - "/usr/lib/X11"
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "/usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake:103 (cmake_check_source_compiles)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:162 (check_cxx_source_compiles)"
+      - "/usr/share/cmake/Modules/FindThreads.cmake:226 (_threads_check_libc)"
+      - "CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles/CMakeScratch/TryCompile-VdSe1F"
+      binary: "/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles/CMakeScratch/TryCompile-VdSe1F"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_STDLIB_MODULES_JSON: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles/CMakeScratch/TryCompile-VdSe1F'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ef30e/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_ef30e.dir/build.make CMakeFiles/cmTC_ef30e.dir/build
+        make[1]: Entering directory '/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles/CMakeScratch/TryCompile-VdSe1F'
+        Building CXX object CMakeFiles/cmTC_ef30e.dir/src.cxx.o
+        /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu++17 -o CMakeFiles/cmTC_ef30e.dir/src.cxx.o -c /home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles/CMakeScratch/TryCompile-VdSe1F/src.cxx
+        Linking CXX executable cmTC_ef30e
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ef30e.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_ef30e.dir/src.cxx.o -o cmTC_ef30e
+        make[1]: Leaving directory '/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles/CMakeScratch/TryCompile-VdSe1F'
+        
+      exitCode: 0
+...
