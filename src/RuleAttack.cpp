@@ -26,7 +26,29 @@ static std::string uppercaseAll(const std::string& word){
   return uppercased;
 }
 
-static std::string leetSubstitution(const std::string& word){
+static void leetPermutations(
+  const std::string& word,
+  size_t index,
+  std::string current,
+  const std::map<char, char>& substitutions,
+  std::vector<std::string>& results
+){
+  if(index == word.size()){
+    results.push_back(current);
+    return;
+  }
+
+  char c = word[index];
+  auto it = substitutions.find(tolower(c));
+
+  leetPermutations(word, index + 1, current + c, substitutions, results);
+
+  if(it != substitutions.end()){
+    leetPermutations(word, index + 1, current + it->second, substitutions, results);
+  }
+}
+
+static std::vector<std::string> leetSubstitution(const std::string& word){
   std::map<char, char> substitutions = {
     {'a', '@'},
     {'e', '3'},
@@ -36,17 +58,10 @@ static std::string leetSubstitution(const std::string& word){
     {'t', '7'}
   };
 
-  std::string leetSubstituted = word;
-  std::transform(leetSubstituted.begin(), leetSubstituted.end(), leetSubstituted.begin(), ::tolower);
+  std::vector<std::string> results;
+  leetPermutations(word, 0, "", substitutions, results);
 
-  for(auto& c : leetSubstituted){
-    auto it = substitutions.find(c);
-    if(it != substitutions.end()){
-      c = it->second;
-    }
-  }
-
-  return leetSubstituted;
+  return results;
 }
 
 static std::vector<std::string> appendDigits(const std::string& word){
@@ -91,13 +106,16 @@ static std::vector<std::string> mutationsManager(const std::string& word){
 
   mutatedList.push_back(capitalizeFirst(word));
   mutatedList.push_back(uppercaseAll(word));
-  mutatedList.push_back(leetSubstitution(word));
   mutatedList.push_back(reverse(word));
   mutatedList.push_back(toggleCase(word));
 
   std::vector<std::string> appendedDigitsList = appendDigits(word);
-
   for(auto w : appendedDigitsList){
+    mutatedList.push_back(w);
+  }
+
+  std::vector<std::string> leetPermutationsList = leetSubstitution(word);
+  for(auto w : leetPermutationsList){
     mutatedList.push_back(w);
   }
 
