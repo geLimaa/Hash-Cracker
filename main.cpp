@@ -1,6 +1,7 @@
 #include "./include/Hasher.hpp"
 #include "./include/DictionaryAttack.hpp"
 #include "./include/BruteForceAttack.hpp"
+#include "./include/RuleAttack.hpp"
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -14,7 +15,7 @@ int main(){
   std:: cin >> hash;
   algorithm = detectHashType(hash);
 
-  std::cout << "Which type of attack [Dictionary/BruteForce]: ";
+  std::cout << "Which type of attack [Dictionary/BruteForce/RuleAttack]: ";
   std::cin >> typeAttack;
 
   std::transform(typeAttack.begin(), typeAttack.end(), typeAttack.begin(), ::tolower);
@@ -58,6 +59,12 @@ int main(){
     std::cin >> maxLength;
 
     std::cout << bruteForceAttack(hash, algorithm, charset, maxLength);
+  }
+  else if(typeAttack == "ruleattack"){
+    std::string path;
+    std::cout << "Path to wordslist: ";
+    std::cin >> path;
+    std::cout << ruleAttack(hash, algorithm, path);
   }
   else{
     std::cout << "Invalid Option\n";

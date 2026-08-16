@@ -4,7 +4,11 @@
 #include <iostream>
 #include <fstream>
 
-std::string dictionaryAttack(const std::string& hash, const std::string& algorithm, const std::string& path){
+std::string dictionaryAttack(
+  const std::string& hash, 
+  const std::string& algorithm, 
+  const std::string& path
+){
   
   std::string(*hashFunction)(const std::string&);
 

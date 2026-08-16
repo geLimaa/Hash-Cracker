@@ -5,7 +5,10 @@
 #include <cctype>
 #include <string>
 
-static std::string computeHash(const std::string& input, const EVP_MD* algorithm){
+static std::string computeHash(
+  const std::string& input, 
+  const EVP_MD* algorithm
+){
   EVP_MD_CTX* ctx = EVP_MD_CTX_new();
   EVP_DigestInit_ex(ctx, algorithm, nullptr);
   EVP_DigestUpdate(ctx, input.c_str(), input.size());

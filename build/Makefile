@@ -225,6 +225,30 @@ src/Hasher.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/Hasher.cpp.s
 .PHONY : src/Hasher.cpp.s
 
+src/RuleAttack.o: src/RuleAttack.cpp.o
+.PHONY : src/RuleAttack.o
+
+# target to build an object file
+src/RuleAttack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o
+.PHONY : src/RuleAttack.cpp.o
+
+src/RuleAttack.i: src/RuleAttack.cpp.i
+.PHONY : src/RuleAttack.i
+
+# target to preprocess a source file
+src/RuleAttack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.i
+.PHONY : src/RuleAttack.cpp.i
+
+src/RuleAttack.s: src/RuleAttack.cpp.s
+.PHONY : src/RuleAttack.s
+
+# target to generate assembly for a file
+src/RuleAttack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.s
+.PHONY : src/RuleAttack.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -246,6 +270,9 @@ help:
 	@echo "... src/Hasher.o"
 	@echo "... src/Hasher.i"
 	@echo "... src/Hasher.s"
+	@echo "... src/RuleAttack.o"
+	@echo "... src/RuleAttack.i"
+	@echo "... src/RuleAttack.s"
 .PHONY : help
 
 

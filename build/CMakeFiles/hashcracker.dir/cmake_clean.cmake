@@ -8,6 +8,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o.d"
   "CMakeFiles/hashcracker.dir/src/Hasher.cpp.o"
   "CMakeFiles/hashcracker.dir/src/Hasher.cpp.o.d"
+  "CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o"
+  "CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o.d"
   "hashcracker"
   "hashcracker.pdb"
 )
