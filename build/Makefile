@@ -177,6 +177,30 @@ src/BruteForceAttack.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.s
 .PHONY : src/BruteForceAttack.cpp.s
 
+src/Cli.o: src/Cli.cpp.o
+.PHONY : src/Cli.o
+
+# target to build an object file
+src/Cli.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/Cli.cpp.o
+.PHONY : src/Cli.cpp.o
+
+src/Cli.i: src/Cli.cpp.i
+.PHONY : src/Cli.i
+
+# target to preprocess a source file
+src/Cli.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/Cli.cpp.i
+.PHONY : src/Cli.cpp.i
+
+src/Cli.s: src/Cli.cpp.s
+.PHONY : src/Cli.s
+
+# target to generate assembly for a file
+src/Cli.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hashcracker.dir/build.make CMakeFiles/hashcracker.dir/src/Cli.cpp.s
+.PHONY : src/Cli.cpp.s
+
 src/DictionaryAttack.o: src/DictionaryAttack.cpp.o
 .PHONY : src/DictionaryAttack.o
 
@@ -264,6 +288,9 @@ help:
 	@echo "... src/BruteForceAttack.o"
 	@echo "... src/BruteForceAttack.i"
 	@echo "... src/BruteForceAttack.s"
+	@echo "... src/Cli.o"
+	@echo "... src/Cli.i"
+	@echo "... src/Cli.s"
 	@echo "... src/DictionaryAttack.o"
 	@echo "... src/DictionaryAttack.i"
 	@echo "... src/DictionaryAttack.s"

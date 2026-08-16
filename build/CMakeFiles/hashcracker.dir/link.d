@@ -3,6 +3,7 @@ hashcracker: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o \
   CMakeFiles/hashcracker.dir/main.cpp.o \
+  CMakeFiles/hashcracker.dir/src/Cli.cpp.o \
   CMakeFiles/hashcracker.dir/src/Hasher.cpp.o \
   CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o \
   CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o \
@@ -57,6 +58,8 @@ hashcracker: \
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o:
 
 CMakeFiles/hashcracker.dir/main.cpp.o:
+
+CMakeFiles/hashcracker.dir/src/Cli.cpp.o:
 
 CMakeFiles/hashcracker.dir/src/Hasher.cpp.o:
 

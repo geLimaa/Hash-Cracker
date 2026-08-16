@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/hashcracker.dir/main.cpp.o.d"
   "CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o"
   "CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o.d"
+  "CMakeFiles/hashcracker.dir/src/Cli.cpp.o"
+  "CMakeFiles/hashcracker.dir/src/Cli.cpp.o.d"
   "CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o"
   "CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o.d"
   "CMakeFiles/hashcracker.dir/src/Hasher.cpp.o"

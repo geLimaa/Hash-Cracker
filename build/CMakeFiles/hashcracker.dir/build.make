@@ -86,10 +86,24 @@ CMakeFiles/hashcracker.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/hashcracker.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/limaa/Documents/Workspace/Python/HashCracker/main.cpp -o CMakeFiles/hashcracker.dir/main.cpp.s
 
+CMakeFiles/hashcracker.dir/src/Cli.cpp.o: CMakeFiles/hashcracker.dir/flags.make
+CMakeFiles/hashcracker.dir/src/Cli.cpp.o: /home/limaa/Documents/Workspace/Python/HashCracker/src/Cli.cpp
+CMakeFiles/hashcracker.dir/src/Cli.cpp.o: CMakeFiles/hashcracker.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/hashcracker.dir/src/Cli.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hashcracker.dir/src/Cli.cpp.o -MF CMakeFiles/hashcracker.dir/src/Cli.cpp.o.d -o CMakeFiles/hashcracker.dir/src/Cli.cpp.o -c /home/limaa/Documents/Workspace/Python/HashCracker/src/Cli.cpp
+
+CMakeFiles/hashcracker.dir/src/Cli.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/hashcracker.dir/src/Cli.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/limaa/Documents/Workspace/Python/HashCracker/src/Cli.cpp > CMakeFiles/hashcracker.dir/src/Cli.cpp.i
+
+CMakeFiles/hashcracker.dir/src/Cli.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/hashcracker.dir/src/Cli.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/limaa/Documents/Workspace/Python/HashCracker/src/Cli.cpp -o CMakeFiles/hashcracker.dir/src/Cli.cpp.s
+
 CMakeFiles/hashcracker.dir/src/Hasher.cpp.o: CMakeFiles/hashcracker.dir/flags.make
 CMakeFiles/hashcracker.dir/src/Hasher.cpp.o: /home/limaa/Documents/Workspace/Python/HashCracker/src/Hasher.cpp
 CMakeFiles/hashcracker.dir/src/Hasher.cpp.o: CMakeFiles/hashcracker.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/hashcracker.dir/src/Hasher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/hashcracker.dir/src/Hasher.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hashcracker.dir/src/Hasher.cpp.o -MF CMakeFiles/hashcracker.dir/src/Hasher.cpp.o.d -o CMakeFiles/hashcracker.dir/src/Hasher.cpp.o -c /home/limaa/Documents/Workspace/Python/HashCracker/src/Hasher.cpp
 
 CMakeFiles/hashcracker.dir/src/Hasher.cpp.i: cmake_force
@@ -103,7 +117,7 @@ CMakeFiles/hashcracker.dir/src/Hasher.cpp.s: cmake_force
 CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o: CMakeFiles/hashcracker.dir/flags.make
 CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o: /home/limaa/Documents/Workspace/Python/HashCracker/src/DictionaryAttack.cpp
 CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o: CMakeFiles/hashcracker.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o -MF CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o.d -o CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o -c /home/limaa/Documents/Workspace/Python/HashCracker/src/DictionaryAttack.cpp
 
 CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.s: cmake_force
 CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o: CMakeFiles/hashcracker.dir/flags.make
 CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o: /home/limaa/Documents/Workspace/Python/HashCracker/src/BruteForceAttack.cpp
 CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o: CMakeFiles/hashcracker.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o -MF CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o.d -o CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o -c /home/limaa/Documents/Workspace/Python/HashCracker/src/BruteForceAttack.cpp
 
 CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.s: cmake_force
 CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o: CMakeFiles/hashcracker.dir/flags.make
 CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o: /home/limaa/Documents/Workspace/Python/HashCracker/src/RuleAttack.cpp
 CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o: CMakeFiles/hashcracker.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o -MF CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o.d -o CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.o -c /home/limaa/Documents/Workspace/Python/HashCracker/src/RuleAttack.cpp
 
 CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.i: cmake_force
@@ -145,6 +159,7 @@ CMakeFiles/hashcracker.dir/src/RuleAttack.cpp.s: cmake_force
 # Object files for target hashcracker
 hashcracker_OBJECTS = \
 "CMakeFiles/hashcracker.dir/main.cpp.o" \
+"CMakeFiles/hashcracker.dir/src/Cli.cpp.o" \
 "CMakeFiles/hashcracker.dir/src/Hasher.cpp.o" \
 "CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o" \
 "CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o" \
@@ -154,6 +169,7 @@ hashcracker_OBJECTS = \
 hashcracker_EXTERNAL_OBJECTS =
 
 hashcracker: CMakeFiles/hashcracker.dir/main.cpp.o
+hashcracker: CMakeFiles/hashcracker.dir/src/Cli.cpp.o
 hashcracker: CMakeFiles/hashcracker.dir/src/Hasher.cpp.o
 hashcracker: CMakeFiles/hashcracker.dir/src/DictionaryAttack.cpp.o
 hashcracker: CMakeFiles/hashcracker.dir/src/BruteForceAttack.cpp.o
@@ -162,7 +178,7 @@ hashcracker: CMakeFiles/hashcracker.dir/build.make
 hashcracker: CMakeFiles/hashcracker.dir/compiler_depend.ts
 hashcracker: /usr/lib/libcrypto.so
 hashcracker: CMakeFiles/hashcracker.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable hashcracker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/limaa/Documents/Workspace/Python/HashCracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable hashcracker"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hashcracker.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

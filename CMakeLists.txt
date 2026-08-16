@@ -7,7 +7,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
 
-add_executable(hashcracker main.cpp src/Hasher.cpp src/DictionaryAttack.cpp src/BruteForceAttack.cpp src/RuleAttack.cpp)
+add_executable(hashcracker
+  main.cpp
+  src/Cli.cpp
+  src/Hasher.cpp
+  src/DictionaryAttack.cpp
+  src/BruteForceAttack.cpp
+  src/RuleAttack.cpp
+)
 target_include_directories(hashcracker PRIVATE src)
+target_include_directories(hashcracker PRIVATE include)
 
 target_link_libraries(hashcracker PRIVATE OpenSSL::Crypto Threads::Threads)

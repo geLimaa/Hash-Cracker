@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/limaa/Documents/Workspace/Python/HashCracker/src
+CXX_INCLUDES = -I/home/limaa/Documents/Workspace/Python/HashCracker/src -I/home/limaa/Documents/Workspace/Python/HashCracker/include
 
 CXX_FLAGS = -std=gnu++17
 
