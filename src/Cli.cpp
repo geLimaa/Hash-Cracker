@@ -4,163 +4,195 @@
 #include "../include/BruteForceAttack.hpp"
 #include "../include/RuleAttack.hpp"
 #include <algorithm>
-#include <cctype>
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <thread>
+#include <atomic>
 
-namespace {
+const std::string CYAN = "\033[36m";
+const std::string GREEN = "\033[32m";
+const std::string RESET = "\033[0m";
+const std::string BOLD = "\033[1m";
 
-std::string readLine(const std::string& prompt) {
-  std::string value;
-
-  std::cout << prompt;
-  std::getline(std::cin >> std::ws, value);
-
-  return value;
+static void clearScreen(){
+    std::cout << "\033[2J\033[H";
 }
 
-int readInt(const std::string& prompt) {
-  while (true) {
-    std::string input = readLine(prompt);
+static void printBanner(){
+    std::cout << CYAN << "========================================\n";
+    std::cout << "  HASHCRACKER | v1.0.0\n";
+    std::cout << "========================================" << RESET << "\n";
+}
 
-    try {
-      size_t processed = 0;
-      int value = std::stoi(input, &processed);
-      if (processed == input.size()) {
-        return value;
-      }
-    } catch (...) {
+static void printMenu(){
+    std::cout << "\nAvailable attacks:\n";
+    std::cout << "  1) Dictionary\n";
+    std::cout << "  2) Brute Force\n";
+    std::cout << "  3) Rule Attack\n";
+}
+
+static std::string chooseCharset(){
+    std::cout << "\nChoose a charset:\n";
+    std::cout << "  1) Lowercase letters [a-z]\n";
+    std::cout << "  2) Numbers [0-9]\n";
+    std::cout << "  3) Lowercase + numbers\n";
+    std::cout << "  4) Full set [lower + upper + numbers + symbols]\n";
+
+    int choice;
+    std::cout << "Charset option: ";
+    std::cin >> choice;
+
+    if(choice == 1) return "abcdefghijklmnopqrstuvwxyz";
+    else if(choice == 2) return "0123456789";
+    else if(choice == 3) return "abcdefghijklmnopqrstuvwxyz0123456789";
+    else if(choice == 4) return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+    else return "";
+}
+
+static long long calculateTotalPossibilities(int charsetSize, int maxLength){
+    long long total = 0;
+    long long power = 1;
+    for(int i = 1; i <= maxLength; i++){
+        power *= charsetSize;
+        total += power;
+    }
+    return total;
+}
+
+static void printProgress(long long current, long long total, double elapsedSeconds, bool firstPrint){
+    double percent = (total > 0) ? (100.0 * current / total) : 0.0;
+    double hashesPerSecond = (elapsedSeconds > 0) ? (current / elapsedSeconds) : 0.0;
+
+    int barWidth = 30;
+    int filled = (int)(barWidth * percent / 100.0);
+
+    if(!firstPrint){
+        std::cout << "\033[4A";
     }
 
-    std::cout << "Invalid number. Try again.\n";
-  }
+    std::cout << CYAN << "[";
+    for(int i = 0; i < barWidth; i++){
+        if(i < filled) std::cout << "#";
+        else std::cout << "-";
+    }
+    std::cout << "] " << RESET << BOLD << (int)percent << "%" << RESET << "          \n";
+
+    std::cout << "Hashes tried:    " << current << " / " << total << "          \n";
+    std::cout << "Speed:           " << GREEN << (long long)hashesPerSecond << " h/s" << RESET << "          \n";
+
+    if(hashesPerSecond > 0){
+        double remainingSeconds = (total - current) / hashesPerSecond;
+        std::cout << "Estimated time:  " << (int)remainingSeconds << "s remaining          \n";
+    }
+    else{
+        std::cout << "Estimated time:  calculating...          \n";
+    }
 }
 
-std::string chooseCharset() {
-  std::cout << "\nChoose a charset:\n";
-  std::cout << "  1) Lowercase letters [a-z]\n";
-  std::cout << "  2) Numbers [0-9]\n";
-  std::cout << "  3) Lowercase + numbers\n";
-  std::cout << "  4) Full set [lower + upper + numbers + symbols]\n";
+static void printResult(const std::string& result, const std::string& hash, const std::string& algorithm, double seconds){
+    if(result == ""){
+        std::cout << "\nNo match found.\n";
+        return;
+    }
 
-  switch (readInt("Charset option: ")) {
-    case 1:
-      return "abcdefghijklmnopqrstuvwxyz";
-    case 2:
-      return "0123456789";
-    case 3:
-      return "abcdefghijklmnopqrstuvwxyz0123456789";
-    case 4:
-      return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
-    default:
-      return "";
-  }
+    std::cout << "\n" << GREEN << "CRACKED -----------------------------" << RESET << "\n";
+    std::cout << BOLD << "Password: " << RESET << GREEN << result << RESET << "\n";
+    std::cout << "Hash:      " << hash << "\n";
+    std::cout << "Algorithm: " << algorithm << "\n";
+    std::cout << "Time:      " << seconds << "s\n";
 }
 
-void printBanner() {
-  std::cout << "========================================\n";
-  std::cout << "             HASH CRACKER               \n";
-  std::cout << "========================================\n";
-}
+int runCli(){
+    printBanner();
 
-void printMenu() {
-  std::cout << "\nAvailable attacks:\n";
-  std::cout << "  1) Dictionary\n";
-  std::cout << "  2) Brute Force\n";
-  std::cout << "  3) Rule Attack\n";
-}
+    std::string hash;
+    std::cout << "Hash to break: ";
+    std::cin >> hash;
 
-void printResult(const std::string& result) {
-  if (result.empty()) {
-    std::cout << "No match found.\n";
-    return;
-  }
+    std::string algorithm = detectHashType(hash);
+    if(algorithm == ""){
+        std::cout << "Unsupported or invalid hash format.\n";
+        return 1;
+    }
 
-  std::cout << "Result: " << result << '\n';
-}
+    int numThreads;
+    std::cout << "Number of threads (1 = sequential): ";
+    std::cin >> numThreads;
 
-void runDictionary(const std::string& hash, const std::string& algorithm, int numThreads) {
-  std::string path = readLine("Path to wordslist: ");
-  std::string result;
+    printMenu();
+    int attackChoice;
+    std::cout << "Attack option: ";
+    std::cin >> attackChoice;
 
-  if (numThreads > 1) {
-    result = dictionaryAttackThreaded(hash, algorithm, path, numThreads);
-  } else {
-    result = dictionaryAttack(hash, algorithm, path);
-  }
+    std::string result;
+    auto start = std::chrono::high_resolution_clock::now();
 
-  printResult(result);
-}
+    if(attackChoice == 1){
+        std::string path;
+        std::cout << "Path to wordslist: ";
+        std::cin >> path;
 
-void runBruteForce(const std::string& hash, const std::string& algorithm, int numThreads) {
-  std::string charset = chooseCharset();
-  if (charset.empty()) {
-    std::cout << "Invalid charset option\n";
-    return;
-  }
+        if(numThreads > 1) result = dictionaryAttackThreaded(hash, algorithm, path, numThreads);
+        else result = dictionaryAttack(hash, algorithm, path);
+    }
+    else if(attackChoice == 2){
+        std::string charset = chooseCharset();
+        if(charset == ""){
+            std::cout << "Invalid charset option\n";
+            return 1;
+        }
 
-  int maxLength = readInt("Max length: ");
-  std::string result;
+        int maxLength;
+        std::cout << "Max length: ";
+        std::cin >> maxLength;
 
-  if (numThreads > 1) {
-    result = bruteForceAttackThreaded(hash, algorithm, charset, maxLength, numThreads);
-  } else {
-    result = bruteForceAttack(hash, algorithm, charset, maxLength);
-  }
+        long long totalPossibilities = calculateTotalPossibilities(charset.size(), maxLength);
+        std::atomic<long long> hashCount(0);
+        bool attackFinished = false;
 
-  printResult(result);
-}
+        std::thread attackThread([&](){
+            if(numThreads > 1){
+                result = bruteForceAttackThreaded(hash, algorithm, charset, maxLength, numThreads, hashCount);
+            }
+            else{
+                result = bruteForceAttack(hash, algorithm, charset, maxLength);
+            }
+            attackFinished = true;
+        });
 
-void runRuleAttack(const std::string& hash, const std::string& algorithm, int numThreads) {
-  std::string path = readLine("Path to wordslist: ");
-  std::string result;
+        clearScreen();
+        printBanner();
+        std::cout << "\nCracking...\n\n";
 
-  if (numThreads > 1) {
-    result = ruleAttackThreaded(hash, algorithm, path, numThreads);
-  } else {
-    result = ruleAttack(hash, algorithm, path);
-  }
+        bool firstPrint = true;
+        while(!attackFinished){
+            auto now = std::chrono::high_resolution_clock::now();
+            double elapsed = std::chrono::duration<double>(now - start).count();
+            printProgress(hashCount.load(), totalPossibilities, elapsed, firstPrint);
+            firstPrint = false;
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        }
 
-  printResult(result);
-}
+        attackThread.join();
+    }
+    else if(attackChoice == 3){
+        std::string path;
+        std::cout << "Path to wordslist: ";
+        std::cin >> path;
 
-}  
+        if(numThreads > 1) result = ruleAttackThreaded(hash, algorithm, path, numThreads);
+        else result = ruleAttack(hash, algorithm, path);
+    }
+    else{
+        std::cout << "Invalid option\n";
+        return 1;
+    }
 
-int runCli() {
-  printBanner();
+    auto end = std::chrono::high_resolution_clock::now();
+    double totalSeconds = std::chrono::duration<double>(end - start).count();
 
-  std::string hash = readLine("Hash to break: ");
-  std::string algorithm = detectHashType(hash);
-  if (algorithm.empty()) {
-    std::cout << "Unsupported or invalid hash format.\n";
-    return 1;
-  }
+    printResult(result, hash, algorithm, totalSeconds);
 
-  int numThreads = readInt("Number of threads (1 = sequential): ");
-  if (numThreads < 1) {
-    std::cout << "Thread count must be at least 1.\n";
-    return 1;
-  }
-
-  printMenu();
-  int attackChoice = readInt("Attack option: ");
-
-  std::cout << '\n';
-
-  switch (attackChoice) {
-    case 1:
-      runDictionary(hash, algorithm, numThreads);
-      break;
-    case 2:
-      runBruteForce(hash, algorithm, numThreads);
-      break;
-    case 3:
-      runRuleAttack(hash, algorithm, numThreads);
-      break;
-    default:
-      std::cout << "Invalid option\n";
-      return 1;
-  }
-
-  return 0;
+    return 0;
 }

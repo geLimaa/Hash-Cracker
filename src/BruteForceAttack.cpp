@@ -5,6 +5,7 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <atomic>
 
 std::mutex resultMutex;
 
@@ -41,11 +42,13 @@ static void bruteForceThreaded(
   const std::string& hash, 
   std::string (*hashFunction)(const std::string&),
   std::string& sharedResult,
-  bool& found
+  bool& found,
+  std::atomic<long long>& hashCount
 ){
   if(found){ return; }
 
   if(remaining == 0){    
+    ++hashCount;
     if(hashFunction(prefix) == hash){
       std::lock_guard<std::mutex> lock(resultMutex);
       sharedResult = prefix;
@@ -56,7 +59,7 @@ static void bruteForceThreaded(
 
   for(const auto c : charset){
     if(found) return;
-    bruteForceThreaded(prefix + c, remaining - 1, charset, hash, hashFunction, sharedResult, found);
+    bruteForceThreaded(prefix + c, remaining - 1, charset, hash, hashFunction, sharedResult, found, hashCount);
   }
 }
 
@@ -100,7 +103,8 @@ std::string bruteForceAttackThreaded(
   const std::string& algorithm, 
   const std::string& charset, 
   int maxLength,
-  int numThreads
+  int numThreads,
+  std::atomic<long long>& hashCount
 ){
   std::string(*hashFunction)(const std::string&);
 
@@ -134,10 +138,10 @@ std::string bruteForceAttackThreaded(
       int end = (t == numThreads - 1) ? charsetSize : start + chunkSize;
       std::string subCharset = charset.substr(start, end - start);
 
-      threads.push_back(std::thread([=, &sharedResult, &found](){
+      threads.push_back(std::thread([=, &sharedResult, &found, &hashCount](){
         for(const auto c : subCharset){
           if(found){ return; }
-            bruteForceThreaded(std::string(1, c), len - 1, charset, hash, hashFunction, sharedResult, found);
+            bruteForceThreaded(std::string(1, c), len - 1, charset, hash, hashFunction, sharedResult, found, hashCount);
         }
       }));
     }
